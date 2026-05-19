@@ -3,7 +3,7 @@ import yfinance as yf
 import plotly.graph_objects as go
 
 # Title
-st.title("📊 Stock Data Visualization Dashboard")
+st.title("Stock Data Visualization Dashboard")
 
 # User inputs
 symbol = st.text_input("Enter Stock Symbol (e.g. AAPL, TSLA, MSFT):", "AAPL")
@@ -13,7 +13,7 @@ period = st.selectbox("Select Time Period:", ["1mo", "3mo", "6mo", "1y", "5y", "
 data = yf.Ticker(symbol).history(period=period)
 
 if data.empty:
-    st.warning("No data found. Please check the stock symbol.")
+    st.warning("Please check symbol");
 else:
     st.subheader(f"Showing data for {symbol.upper()} ({period})")
 
@@ -21,7 +21,7 @@ else:
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=data.index, y=data['Close'], mode='lines', name='Close Price'))
 
-    # Add moving average (optional)
+    # Add moving average
     data['SMA_20'] = data['Close'].rolling(window=20).mean()
     fig.add_trace(go.Scatter(x=data.index, y=data['SMA_20'], mode='lines', name='20-day SMA'))
 
