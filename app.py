@@ -17,11 +17,9 @@ if data.empty:
 else:
     st.subheader(f"Show data for {symbol.upper()} ({period})")
 
-    # Line chart for Close Price
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=data.index, y=data['Close'], mode='lines', name='Close Price'))
 
-    # Add moving average
     data['SMA_20'] = data['Close'].rolling(window=20).mean()
     fig.add_trace(go.Scatter(x=data.index, y=data['SMA_20'], mode='lines', name='20-day SMA'))
 
