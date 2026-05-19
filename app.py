@@ -19,12 +19,12 @@ else:
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=data.index, y=data['Close'], mode='lines', name='Close Price'))
-
+    
     data['SMA_20'] = data['Close'].rolling(window=20).mean()
     fig.add_trace(go.Scatter(x=data.index, y=data['SMA_20'], mode='lines', name='20-day SMA'))
-
+    
     fig.update_layout(
-        title=f"{symbol.upper()} Stock Price Over Time",
+        title=f"{symbol.upper()}",
         xaxis_title="Date",
         yaxis_title="Price (USD)",
         template="plotly_dark"
