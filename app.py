@@ -13,9 +13,9 @@ period = st.selectbox("Select Time Period:", ["1mo", "3mo", "6mo", "1y", "5y", "
 data = yf.Ticker(symbol).history(period=period)
 
 if data.empty:
-    st.warning("Please check symbol");
+    st.warning("Please check symbol, no data shown");
 else:
-    st.subheader(f"Showing data for {symbol.upper()} ({period})")
+    st.subheader(f"Show data for {symbol.upper()} ({period})")
 
     # Line chart for Close Price
     fig = go.Figure()
